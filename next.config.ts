@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Turbopack experimental system TLS for environments that block Google Fonts
+  experimental: {
+    turbopackUseSystemTlsCerts: true,
+  },
+  // Performance optimizations
+  compress: true,
+  poweredByHeader: false,
 };
 
 export default nextConfig;
