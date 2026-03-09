@@ -54,14 +54,12 @@ export default function Contact() {
     setTimeout(() => setStatus('idle'), 4000);
   };
 
-  const inputClass = (field: string) => `
-    w-full px-4 py-3 rounded-xl text-white text-sm placeholder-gray-600
-    bg-white/3 border transition-all duration-300 outline-none
-    ${focused === field
-      ? 'border-indigo-500/50 bg-white/5 shadow-[0_0_0_3px_rgba(99,102,241,0.08)]'
-      : 'border-white/8 hover:border-white/15'
-    }
-  `;
+  const inputClass = (field: string) =>
+    `w-full px-4 py-3 rounded-xl text-white text-sm placeholder-gray-500 bg-white/5 border transition-all duration-300 outline-none ${
+      focused === field
+        ? 'border-indigo-500/50 bg-white/[0.07] shadow-[0_0_0_3px_rgba(99,102,241,0.1)]'
+        : 'border-white/10 hover:border-white/20'
+    }`;
 
   return (
     <section id="contact" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: '#0c0c14' }}>
