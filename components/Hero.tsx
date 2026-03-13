@@ -1,224 +1,297 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Sparkles, MapPin, TrendingUp } from 'lucide-react';
+import { ArrowDown, MapPin, Phone, Linkedin, Github, ExternalLink, ChevronRight } from 'lucide-react';
+import AnimatedCounter from './AnimatedCounter';
 
-const Particle = ({ index }: { index: number }) => {
-  const positions = [
-    { x: '10%', y: '20%' }, { x: '85%', y: '15%' }, { x: '25%', y: '70%' },
-    { x: '70%', y: '60%' }, { x: '50%', y: '30%' }, { x: '90%', y: '80%' },
-    { x: '15%', y: '85%' }, { x: '60%', y: '10%' }, { x: '35%', y: '45%' },
-    { x: '75%', y: '35%' }, { x: '5%', y: '50%' }, { x: '45%', y: '90%' },
-  ];
-  const pos = positions[index % positions.length];
-  const sizes = [2, 3, 4, 2, 3];
-  const size = sizes[index % sizes.length];
-  const durations = [4, 6, 8, 5, 7];
-  const duration = durations[index % durations.length];
+const stats = [
+  { value: 4, suffix: '+', label: 'Years Experience', color: 'text-indigo-400' },
+  { value: 3, suffix: '', label: 'Companies', color: 'text-purple-400' },
+  { value: 99.5, suffix: '%', label: 'Inventory Accuracy', color: 'text-cyan-400', decimals: 1 },
+  { value: 1000, suffix: '+', label: 'Shipments Handled', color: 'text-green-400' },
+];
 
-  return (
-    <motion.div
-      className="absolute rounded-full"
-      style={{
-        left: pos.x,
-        top: pos.y,
-        width: size,
-        height: size,
-        background: index % 3 === 0
-          ? 'rgba(99,102,241,0.6)'
-          : index % 3 === 1
-            ? 'rgba(139,92,246,0.6)'
-            : 'rgba(6,182,212,0.6)',
-      }}
-      animate={{
-        y: [-20, 20, -20],
-        x: [-10, 10, -10],
-        opacity: [0.2, 0.8, 0.2],
-        scale: [0.8, 1.2, 0.8],
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: 'easeInOut',
-        delay: index * 0.3,
-      }}
-    />
-  );
-};
+const badges = [
+  { label: 'SAP S/4HANA Key User', color: 'bg-blue-500/10 border-blue-500/25 text-blue-300' },
+  { label: 'Lean Six Sigma', color: 'bg-amber-500/10 border-amber-500/25 text-amber-300' },
+  { label: 'Dubai, UAE', color: 'bg-green-500/10 border-green-500/25 text-green-300' },
+];
 
 export default function Hero() {
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const scrollToAbout = () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToProjects = () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0f] pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0f] pt-20">
       {/* Grid background */}
       <div className="absolute inset-0 grid-bg opacity-60" />
 
-      {/* Animated gradient orbs */}
+      {/* Gradient orbs */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20"
+        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[140px] opacity-15"
         style={{ background: 'radial-gradient(circle, #6366f1, transparent)' }}
-        animate={{ scale: [1, 1.3, 1], x: [-20, 20, -20] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[100px] opacity-15"
-        style={{ background: 'radial-gradient(circle, #8b5cf6, transparent)' }}
-        animate={{ scale: [1.3, 1, 1.3], x: [20, -20, 20] }}
+        animate={{ scale: [1, 1.2, 1], x: [-20, 20, -20] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full blur-[80px] opacity-10"
+        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10"
+        style={{ background: 'radial-gradient(circle, #8b5cf6, transparent)' }}
+        animate={{ scale: [1.2, 1, 1.2], x: [20, -20, 20] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute top-1/2 right-1/4 w-[300px] h-[300px] rounded-full blur-[100px] opacity-8"
         style={{ background: 'radial-gradient(circle, #06b6d4, transparent)' }}
-        animate={{ scale: [1, 1.4, 1], y: [-30, 30, -30] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ scale: [1, 1.3, 1], y: [-30, 30, -30] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <Particle key={i} index={i} />
-        ))}
-      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full py-16">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-8"
-        >
-          <Sparkles size={14} className="text-indigo-400" />
-          Available for opportunities in Data Analytics
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-        </motion.div>
+          {/* LEFT — Main content */}
+          <div className="space-y-7">
+            {/* Availability badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-300 text-sm font-medium"
+            >
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              Open to Opportunities · Dubai & Remote
+            </motion.div>
 
-        {/* Main Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
-        >
-          Turning Logistics Data
-          <br />
-          <span className="gradient-text">into Smart Supply Chain</span>
-          <br />
-          Decisions
-        </motion.h1>
+            {/* Name + Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-3">
+                Sattanathan
+                <br />
+                <span className="gradient-text">Chandran</span>
+              </h1>
+              <p className="text-lg text-gray-300 font-medium leading-relaxed">
+                Supply Chain & Logistics Specialist
+                <span className="text-gray-600 mx-2">·</span>
+                <span className="text-indigo-300">SAP Key User</span>
+                <span className="text-gray-600 mx-2">·</span>
+                <span className="text-purple-300">Process Automation</span>
+              </p>
+            </motion.div>
 
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-4 leading-relaxed"
-        >
-          Logistics Coordinator in Dubai transitioning into{' '}
-          <span className="text-indigo-300 font-medium">Supply Chain Data Analyst</span> &{' '}
-          <span className="text-purple-300 font-medium">Automation Builder</span> — turning
-          complex operations data into actionable intelligence.
-        </motion.p>
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.35 }}
+              className="text-gray-400 text-base lg:text-lg leading-relaxed max-w-xl"
+            >
+              4+ years managing end-to-end supply chain operations across manufacturing and freight forwarding
+              in Dubai & India. Expert in{' '}
+              <span className="text-white font-medium">SAP S/4HANA</span>,{' '}
+              <span className="text-white font-medium">Excel VBA automation</span>, and{' '}
+              <span className="text-white font-medium">logistics process optimisation</span>.
+            </motion.p>
 
-        {/* Location */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="flex items-center justify-center gap-2 text-gray-500 text-sm mb-10"
-        >
-          <MapPin size={14} className="text-indigo-400" />
-          Dubai, UAE
-          <span className="w-1 h-1 rounded-full bg-gray-600" />
-          <TrendingUp size={14} className="text-green-400" />
-          <span className="text-green-400">Open to Remote & Relocation</span>
-        </motion.div>
+            {/* Skill badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="flex flex-wrap gap-2"
+            >
+              {badges.map((b) => (
+                <span key={b.label} className={`px-3 py-1 rounded-full border text-xs font-medium ${b.color}`}>
+                  {b.label}
+                </span>
+              ))}
+            </motion.div>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
-        >
-          <motion.button
-            whileHover={{ scale: 1.03, boxShadow: '0 0 40px rgba(99,102,241,0.4)' }}
-            whileTap={{ scale: 0.97 }}
-            onClick={scrollToProjects}
-            className="relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl text-white font-semibold text-base shimmer-btn overflow-hidden group"
+            {/* Location + Contact quick links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.55 }}
+              className="flex flex-wrap items-center gap-4 text-sm text-gray-500"
+            >
+              <span className="flex items-center gap-1.5">
+                <MapPin size={13} className="text-indigo-400" />
+                Dubai, UAE
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Phone size={13} className="text-indigo-400" />
+                +971 50 387 1079
+              </span>
+              <a
+                href="https://linkedin.com/in/sat-logistics"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-blue-400 transition-colors"
+              >
+                <Linkedin size={13} className="text-blue-400" />
+                sat-logistics
+              </a>
+              <a
+                href="https://github.com/satta02122002-ops"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-white transition-colors"
+              >
+                <Github size={13} />
+                satta02122002-ops
+              </a>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.65 }}
+              className="flex flex-wrap gap-3"
+            >
+              <motion.button
+                whileHover={{ scale: 1.03, boxShadow: '0 0 40px rgba(99,102,241,0.3)' }}
+                whileTap={{ scale: 0.97 }}
+                onClick={scrollToProjects}
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl text-white font-semibold text-sm shimmer-btn"
+              >
+                View My Work
+                <ChevronRight size={16} />
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={scrollToContact}
+                className="flex items-center gap-2 px-6 py-3 glass border border-white/10 hover:border-indigo-500/30 rounded-xl text-white font-semibold text-sm transition-all duration-300"
+              >
+                Get in Touch
+              </motion.button>
+
+              <motion.a
+                href="https://satteches.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2 px-6 py-3 text-gray-400 hover:text-white font-semibold text-sm border border-transparent hover:border-white/10 rounded-xl transition-all duration-300"
+              >
+                <ExternalLink size={15} />
+                satteches.com
+              </motion.a>
+            </motion.div>
+          </div>
+
+          {/* RIGHT — Stats card */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
           >
-            <span className="relative z-10">View My Work</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </motion.button>
+            {/* Main stats card */}
+            <div className="glass rounded-3xl border border-white/10 p-6 lg:p-8 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5 via-purple-600/3 to-transparent" />
 
-          <motion.a
-            href="/resume.pdf"
-            download
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-indigo-500/40 rounded-xl text-white font-semibold text-base transition-all duration-300"
-          >
-            Download Resume
-          </motion.a>
+              <div className="relative z-10">
+                {/* Top row — profile */}
+                <div className="flex items-center gap-4 mb-8 pb-6 border-b border-white/5">
+                  <div className="relative">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
+                      SC
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-400 border-2 border-[#0a0a0f]" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-base">Sattanathan Chandran</p>
+                    <p className="text-indigo-300 text-sm">Supply Chain Specialist</p>
+                    <p className="text-gray-500 text-xs mt-0.5">ISS Global Forwarding · Dubai</p>
+                  </div>
+                </div>
 
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={scrollToContact}
-            className="px-8 py-4 text-gray-300 hover:text-white font-semibold text-base transition-colors border border-transparent hover:border-white/10 rounded-xl"
-          >
-            Contact Me →
-          </motion.button>
-        </motion.div>
+                {/* Stats grid */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  {stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="glass rounded-2xl border border-white/5 p-4 hover:border-white/10 transition-colors"
+                    >
+                      <p className={`text-2xl font-extrabold ${stat.color} mb-0.5`}>
+                        <AnimatedCounter
+                          end={stat.value}
+                          suffix={stat.suffix}
+                          duration={2200}
+                        />
+                      </p>
+                      <p className="text-gray-500 text-xs font-medium">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
 
-        {/* Stats Row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
-          className="grid grid-cols-3 gap-6 max-w-lg mx-auto mb-16"
-        >
-          {[
-            { value: '3+', label: 'Years Experience' },
-            { value: '10+', label: 'Projects Built' },
-            { value: '5+', label: 'Dashboards Created' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-2xl font-bold gradient-text">{stat.value}</p>
-              <p className="text-xs text-gray-500 mt-1">{stat.label}</p>
+                {/* Award badges */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-amber-500/5 border border-amber-500/15">
+                    <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-sm flex-shrink-0">
+                      🏆
+                    </div>
+                    <div>
+                      <p className="text-white text-xs font-semibold">5S Initiative Award</p>
+                      <p className="text-gray-500 text-xs">Alstom · May 2023</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/5 border border-blue-500/15">
+                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-sm flex-shrink-0">
+                      ⭐
+                    </div>
+                    <div>
+                      <p className="text-white text-xs font-semibold">GSI Excellence Award</p>
+                      <p className="text-gray-500 text-xs">Alstom SAP Expertise · July 2022</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </motion.div>
+
+            {/* Floating accent decoration */}
+            <motion.div
+              className="absolute -top-4 -right-4 w-24 h-24 rounded-full blur-[60px] opacity-20"
+              style={{ background: '#6366f1' }}
+              animate={{ scale: [1, 1.4, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute -bottom-4 -left-4 w-20 h-20 rounded-full blur-[50px] opacity-15"
+              style={{ background: '#8b5cf6' }}
+              animate={{ scale: [1.3, 1, 1.3] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          </motion.div>
+        </div>
 
         {/* Scroll indicator */}
-        <motion.button
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4 }}
-          onClick={scrollToAbout}
-          className="inline-flex flex-col items-center gap-2 text-gray-600 hover:text-gray-400 transition-colors group"
+          className="flex justify-center mt-16"
         >
-          <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
+          <motion.button
+            onClick={scrollToAbout}
+            className="inline-flex flex-col items-center gap-2 text-gray-600 hover:text-gray-400 transition-colors group"
           >
-            <ArrowDown size={16} />
-          </motion.div>
-        </motion.button>
+            <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <ArrowDown size={16} />
+            </motion.div>
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

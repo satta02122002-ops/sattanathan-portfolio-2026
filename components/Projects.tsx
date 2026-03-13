@@ -1,81 +1,114 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { fadeUp, fadeUpSm, stagger, staggerSm, staggerFast } from '@/lib/animations';
+import { fadeUp, stagger } from '@/lib/animations';
 import { useInView } from 'react-intersection-observer';
-import { BarChart3, Users, Navigation, ExternalLink, Github, TrendingUp, CheckCircle2, Layers } from 'lucide-react';
+import { Globe, Cpu, Package, Code2, ExternalLink, Github, CheckCircle2, Layers, TrendingUp, BarChart3 } from 'lucide-react';
 
 const projects = [
   {
     id: 1,
-    icon: BarChart3,
-    label: 'Data Analytics',
+    icon: Globe,
+    label: 'Web Application',
     labelColor: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20',
-    title: 'Supply Chain Analytics Dashboard',
-    description: 'An end-to-end Power BI analytics solution transforming raw logistics data into executive-level intelligence for supply chain decision makers.',
+    title: 'Billing & Activity Tracking Web Tool',
+    company: 'ISS Global Forwarding · Dubai',
+    companyColor: 'text-indigo-300',
+    description:
+      'An internal web-based tool built to monitor and record all warehouse activities — picking, packing, loading, and unloading. Automated generation of monthly billing summaries for storage and handling charges, replacing a painful manual month-end process entirely.',
     gradient: 'from-indigo-600/20 via-transparent to-transparent',
     borderGlow: 'hover:border-indigo-500/30',
-    glowColor: 'rgba(99,102,241,0.08)',
+    glowColor: 'rgba(99,102,241,0.06)',
     features: [
-      { icon: TrendingUp, text: 'Revenue trend analysis with YoY comparison' },
-      { icon: CheckCircle2, text: 'Quotation approval rate & pipeline tracking' },
-      { icon: BarChart3, text: 'Monthly shipment volume visualization' },
-      { icon: Layers, text: 'Equipment brand performance breakdown' },
+      { icon: CheckCircle2, text: 'Real-time tracking of picking, packing, loading & unloading' },
+      { icon: BarChart3, text: 'Automated billing summaries for storage & handling charges' },
+      { icon: TrendingUp, text: 'Drastically reduced month-end processing time' },
+      { icon: Layers, text: 'Improved financial transparency for client invoicing' },
     ],
-    tags: ['Power BI', 'DAX', 'SQL', 'Data Modeling'],
-    status: 'Completed',
+    tags: ['HTML/CSS/JS', 'Web App', 'Automation', 'Billing', 'Logistics'],
+    status: 'Live · Production',
     statusColor: 'text-green-400 bg-green-500/10 border-green-500/20',
-    mockupData: [65, 78, 52, 89, 73, 95, 81, 67, 88, 72, 91, 84],
+    mockupData: [40, 55, 48, 72, 65, 88, 79, 91, 84, 95, 90, 98],
   },
   {
     id: 2,
-    icon: Users,
-    label: 'Productivity System',
+    icon: Cpu,
+    label: 'SAP Automation',
     labelColor: 'text-purple-400 bg-purple-500/10 border-purple-500/20',
-    title: 'Warehouse Productivity Tracking System',
-    description: 'A comprehensive workforce analytics platform monitoring employee productivity, attendance patterns, and task completion rates in real-time.',
+    title: 'SAP VBA Macro Suite — WIP & GOGI Error Clearance',
+    company: 'Alstom Transport India · Coimbatore',
+    companyColor: 'text-purple-300',
+    description:
+      'Custom Excel VBA macros developed to automate the clearance of negative WIP (Work in Progress) and GOGI (Goods Out/Goods In) errors in SAP S/4HANA. Eliminated hours of manual data entry per week and significantly increased SAP system reliability and data integrity.',
     gradient: 'from-purple-600/20 via-transparent to-transparent',
     borderGlow: 'hover:border-purple-500/30',
-    glowColor: 'rgba(139,92,246,0.08)',
+    glowColor: 'rgba(139,92,246,0.06)',
     features: [
-      { icon: CheckCircle2, text: 'Real-time employee attendance tracking' },
-      { icon: TrendingUp, text: 'Working hours & overtime analysis' },
-      { icon: BarChart3, text: 'Task productivity metrics & KPIs' },
-      { icon: Users, text: 'Team performance comparison dashboards' },
+      { icon: Cpu, text: 'Automated negative WIP error clearance in SAP MM/WM' },
+      { icon: CheckCircle2, text: 'GOGI error detection and auto-correction routines' },
+      { icon: TrendingUp, text: 'Eliminated manual data entry bottlenecks' },
+      { icon: BarChart3, text: 'Increased SAP data integrity and system reliability' },
     ],
-    tags: ['Excel', 'Power Query', 'VBA', 'Charts'],
-    status: 'Completed',
+    tags: ['Excel VBA', 'SAP MM', 'SAP WM', 'Macros', 'S/4HANA'],
+    status: 'Deployed',
     statusColor: 'text-green-400 bg-green-500/10 border-green-500/20',
-    mockupData: [88, 72, 95, 61, 84, 77, 92, 68, 85, 79, 90, 73],
+    mockupData: [30, 42, 38, 55, 62, 71, 68, 79, 74, 85, 80, 90],
   },
   {
     id: 3,
-    icon: Navigation,
-    label: 'AI Concept',
+    icon: Package,
+    label: 'Warehouse Design',
     labelColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20',
-    title: 'Logistics Route Optimization Concept',
-    description: 'An AI-powered conceptual system designed to determine the most efficient delivery routes by processing multiple real-time data streams simultaneously.',
+    title: 'Warehouse Layout Optimisation — Dynamic Storage Design',
+    company: 'ISS Global Forwarding · Dubai',
+    companyColor: 'text-cyan-300',
+    description:
+      'Designed and implemented an optimised warehouse layout with dynamic storage locations, tailored specifically for data centre logistics. Systematic rearrangement of picking routes and storage zones reduced cycle times and boosted overall floor productivity.',
     gradient: 'from-cyan-600/20 via-transparent to-transparent',
     borderGlow: 'hover:border-cyan-500/30',
-    glowColor: 'rgba(6,182,212,0.08)',
+    glowColor: 'rgba(6,182,212,0.06)',
     features: [
-      { icon: Navigation, text: 'Real-time traffic data integration' },
-      { icon: CheckCircle2, text: 'Dynamic weather condition routing' },
-      { icon: TrendingUp, text: 'Fuel cost optimization algorithms' },
-      { icon: Layers, text: 'Multi-stop delivery sequencing' },
+      { icon: Package, text: 'Dynamic storage location design for IT hardware' },
+      { icon: CheckCircle2, text: 'Reduced picking cycle times with optimised routes' },
+      { icon: TrendingUp, text: 'Increased overall floor productivity' },
+      { icon: Layers, text: 'Lean 5S methodology applied throughout' },
     ],
-    tags: ['Python', 'ML', 'Route APIs', 'Optimization'],
-    status: 'In Progress',
-    statusColor: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20',
-    mockupData: [45, 62, 38, 74, 55, 81, 49, 67, 58, 72, 63, 77],
+    tags: ['Warehouse Design', 'Lean 5S', 'AutoCAD', 'Operations', 'Data Centre Logistics'],
+    status: 'Implemented',
+    statusColor: 'text-green-400 bg-green-500/10 border-green-500/20',
+    mockupData: [55, 60, 58, 65, 70, 68, 75, 80, 77, 85, 83, 91],
+  },
+  {
+    id: 4,
+    icon: Code2,
+    label: 'Personal Project',
+    labelColor: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
+    title: 'Portfolio Website — satteches.com',
+    company: 'Personal · satteches.com',
+    companyColor: 'text-amber-300',
+    description:
+      'Built a professional portfolio website from scratch to showcase my supply chain expertise, projects, and career journey. Designed with a focus on performance, visual polish, and smooth user experience using modern web technologies.',
+    gradient: 'from-amber-600/15 via-transparent to-transparent',
+    borderGlow: 'hover:border-amber-500/30',
+    glowColor: 'rgba(245,158,11,0.06)',
+    features: [
+      { icon: Code2, text: 'Built with Next.js 15, TypeScript, and Tailwind CSS v4' },
+      { icon: CheckCircle2, text: 'Framer Motion animations with scroll-triggered reveals' },
+      { icon: TrendingUp, text: 'Deployed on Vercel with edge performance optimisations' },
+      { icon: Layers, text: 'Fully responsive — mobile, tablet, and desktop' },
+    ],
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel'],
+    status: 'Live',
+    statusColor: 'text-green-400 bg-green-500/10 border-green-500/20',
+    link: 'https://satteches.com',
+    mockupData: [20, 35, 30, 48, 55, 60, 70, 75, 72, 83, 88, 95],
   },
 ];
 
 function MiniChart({ data, color }: { data: number[]; color: string }) {
   const max = Math.max(...data);
   const min = Math.min(...data);
-  const range = max - min;
-
+  const range = max - min || 1;
   const points = data.map((val, i) => {
     const x = (i / (data.length - 1)) * 100;
     const y = 100 - ((val - min) / range) * 100;
@@ -86,34 +119,25 @@ function MiniChart({ data, color }: { data: number[]; color: string }) {
     <div className="h-16 w-full">
       <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="none">
         <defs>
-          <linearGradient id={`grad-${color}`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <linearGradient id={`grad-${color.replace('#', '')}`} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor={color} stopOpacity="0.3" />
             <stop offset="100%" stopColor={color} stopOpacity="0" />
           </linearGradient>
         </defs>
-        <polyline
-          points={points}
-          fill="none"
-          stroke={color}
-          strokeWidth="2"
-          vectorEffect="non-scaling-stroke"
-        />
-        <polygon
-          points={`0,100 ${points} 100,100`}
-          fill={`url(#grad-${color})`}
-        />
+        <polyline points={points} fill="none" stroke={color} strokeWidth="2" vectorEffect="non-scaling-stroke" />
+        <polygon points={`0,100 ${points} 100,100`} fill={`url(#grad-${color.replace('#', '')})`} />
       </svg>
     </div>
   );
 }
 
-const chartColors = ['#6366f1', '#8b5cf6', '#06b6d4'];
+const chartColors = ['#6366f1', '#8b5cf6', '#06b6d4', '#f59e0b'];
 
 export default function Projects() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
-    <section id="projects" className="relative py-24 lg:py-32 bg-[#0a0a0f] overflow-hidden">
+    <section id="projects" className="relative py-24 lg:py-32 overflow-hidden" style={{ background: '#0c0c14' }}>
       <div className="absolute inset-0 grid-bg opacity-40" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
 
@@ -131,14 +155,14 @@ export default function Projects() {
             Featured Projects
           </motion.div>
           <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Work That <span className="gradient-text">Speaks</span>
+            Work That <span className="gradient-text">Delivers</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Real projects that solve real logistics problems — from analytics dashboards to AI-powered optimization concepts.
+            Real solutions built for real operations — from SAP automation macros to internal web tools that transformed how teams work.
           </motion.p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects */}
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -149,18 +173,14 @@ export default function Projects() {
             <motion.div
               key={project.id}
               variants={fadeUp}
-              whileHover={{
-                scale: 1.005,
-                boxShadow: `0 30px 60px ${project.glowColor}`,
-              }}
+              whileHover={{ scale: 1.003, boxShadow: `0 30px 60px ${project.glowColor}` }}
               className={`relative glass rounded-2xl border border-white/5 ${project.borderGlow} overflow-hidden transition-all duration-500 group`}
             >
-              {/* Gradient overlay */}
               <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
               <div className="relative z-10 p-6 lg:p-8">
                 <div className="grid lg:grid-cols-3 gap-8 items-start">
-                  {/* Left — Project info */}
+                  {/* Left — info */}
                   <div className="lg:col-span-2 space-y-4">
                     <div className="flex flex-wrap items-center gap-3">
                       <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-medium ${project.labelColor}`}>
@@ -172,18 +192,17 @@ export default function Projects() {
                       </span>
                     </div>
 
-                    <h3 className="text-xl lg:text-2xl font-bold text-white group-hover:text-indigo-100 transition-colors">
-                      {project.title}
-                    </h3>
+                    <div>
+                      <h3 className="text-xl lg:text-2xl font-bold text-white mb-1">{project.title}</h3>
+                      <p className={`text-sm font-medium ${project.companyColor}`}>{project.company}</p>
+                    </div>
 
-                    <p className="text-gray-400 leading-relaxed">
-                      {project.description}
-                    </p>
+                    <p className="text-gray-400 leading-relaxed">{project.description}</p>
 
                     <div className="grid sm:grid-cols-2 gap-2">
                       {project.features.map((feature) => (
                         <div key={feature.text} className="flex items-start gap-2">
-                          <feature.icon size={14} className="text-indigo-400 mt-0.5 flex-shrink-0" />
+                          <feature.icon size={13} className="text-indigo-400 mt-0.5 flex-shrink-0" />
                           <span className="text-gray-400 text-sm">{feature.text}</span>
                         </div>
                       ))}
@@ -197,30 +216,47 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    <div className="flex items-center gap-3 pt-2">
-                      <motion.button
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg text-white text-sm font-medium"
-                      >
-                        <ExternalLink size={14} />
-                        View Project
-                      </motion.button>
-                      <motion.button
+                    <div className="flex items-center gap-3 pt-1">
+                      {project.link ? (
+                        <motion.a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.03 }}
+                          whileTap={{ scale: 0.97 }}
+                          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg text-white text-sm font-medium shimmer-btn"
+                        >
+                          <ExternalLink size={13} />
+                          View Live
+                        </motion.a>
+                      ) : (
+                        <motion.button
+                          whileHover={{ scale: 1.03 }}
+                          whileTap={{ scale: 0.97 }}
+                          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg text-white text-sm font-medium opacity-60 cursor-default"
+                        >
+                          <ExternalLink size={13} />
+                          Internal Tool
+                        </motion.button>
+                      )}
+                      <motion.a
+                        href="https://github.com/satta02122002-ops"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
                         className="flex items-center gap-2 px-4 py-2 glass border border-white/10 hover:border-white/20 rounded-lg text-gray-300 text-sm font-medium"
                       >
-                        <Github size={14} />
-                        Source
-                      </motion.button>
+                        <Github size={13} />
+                        GitHub
+                      </motion.a>
                     </div>
                   </div>
 
-                  {/* Right — Mini dashboard */}
+                  {/* Right — mini chart */}
                   <div className="glass rounded-xl p-4 border border-white/5">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">Performance</span>
+                      <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">Output Trend</span>
                       <span className="text-xs text-green-400 font-medium">↑ Active</span>
                     </div>
                     <MiniChart data={project.mockupData} color={chartColors[index]} />
@@ -233,7 +269,10 @@ export default function Projects() {
                       </div>
                       <div className="glass rounded-lg p-3 border border-white/5 text-center">
                         <p className="text-lg font-bold text-green-400">
-                          +{Math.round((project.mockupData[project.mockupData.length - 1] - project.mockupData[0]) / project.mockupData[0] * 100)}%
+                          +{Math.round(
+                            ((project.mockupData[project.mockupData.length - 1] - project.mockupData[0]) /
+                              project.mockupData[0]) * 100
+                          )}%
                         </p>
                         <p className="text-xs text-gray-500">Growth</p>
                       </div>
