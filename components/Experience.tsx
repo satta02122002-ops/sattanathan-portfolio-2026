@@ -140,7 +140,7 @@ export default function Experience() {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Timeline — 2 cols */}
-          <div className="lg:col-span-2 space-y-0">
+          <div className="lg:col-span-2 space-y-0 min-w-0">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.role}
@@ -164,7 +164,7 @@ export default function Experience() {
                 </div>
 
                 {/* Card */}
-                <div className="pb-10 flex-1">
+                <div className="pb-10 flex-1 min-w-0">
                   <motion.div
                     whileHover={{ scale: 1.003 }}
                     className={`glass rounded-2xl border border-white/5 ${exp.hoverBorder} p-6 transition-all duration-300`}
@@ -203,7 +203,7 @@ export default function Experience() {
                       ))}
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 pt-4 border-t border-white/5">
+                    <div className="grid grid-cols-3 gap-2 pt-4 border-t border-white/5">
                       {exp.achievements.map((a) => (
                         <div key={a.label} className="text-center">
                           <p className="text-sm font-bold gradient-text">{a.value}</p>
