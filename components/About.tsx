@@ -93,7 +93,7 @@ export default function About() {
         </motion.div>
 
         {/* Bio + Highlights */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 min-w-0">
           {/* Left — Bio */}
           <motion.div
             variants={stagger}

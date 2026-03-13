@@ -181,7 +181,7 @@ export default function Projects() {
               <div className="relative z-10 p-6 lg:p-8">
                 <div className="grid lg:grid-cols-3 gap-8 items-start">
                   {/* Left — info */}
-                  <div className="lg:col-span-2 space-y-4">
+                  <div className="lg:col-span-2 space-y-4 min-w-0">
                     <div className="flex flex-wrap items-center gap-3">
                       <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-medium ${project.labelColor}`}>
                         <project.icon size={12} />
