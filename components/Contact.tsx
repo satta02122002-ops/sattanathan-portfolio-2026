@@ -2,16 +2,16 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { fadeUp, fadeUpSm, stagger, staggerSm, staggerFast } from '@/lib/animations';
+import { fadeUp, stagger } from '@/lib/animations';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Linkedin, MapPin, Send, CheckCircle2, AlertCircle, MessageSquare } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Phone, Globe, Send, CheckCircle2, AlertCircle, MessageSquare } from 'lucide-react';
 
 const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'sattanathan@email.com',
-    href: 'mailto:sattanathan@email.com',
+    value: 'satta02122002@gmail.com',
+    href: 'mailto:satta02122002@gmail.com',
     color: 'text-indigo-400',
     bg: 'bg-indigo-500/10',
     border: 'border-indigo-500/20',
@@ -19,20 +19,38 @@ const contactInfo = [
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/sattanathan',
-    href: 'https://linkedin.com/in/sattanathan',
+    value: 'linkedin.com/in/sat-logistics',
+    href: 'https://linkedin.com/in/sat-logistics',
     color: 'text-blue-400',
     bg: 'bg-blue-500/10',
     border: 'border-blue-500/20',
   },
   {
-    icon: MapPin,
-    label: 'Location',
-    value: 'Dubai, UAE',
-    href: null,
+    icon: Phone,
+    label: 'Phone / WhatsApp',
+    value: '+971 50 387 1079',
+    href: 'tel:+971503871079',
     color: 'text-green-400',
     bg: 'bg-green-500/10',
     border: 'border-green-500/20',
+  },
+  {
+    icon: Globe,
+    label: 'Website',
+    value: 'satteches.com',
+    href: 'https://satteches.com',
+    color: 'text-cyan-400',
+    bg: 'bg-cyan-500/10',
+    border: 'border-cyan-500/20',
+  },
+  {
+    icon: MapPin,
+    label: 'Location',
+    value: 'Dubai, UAE · Indian National',
+    href: null,
+    color: 'text-purple-400',
+    bg: 'bg-purple-500/10',
+    border: 'border-purple-500/20',
   },
 ];
 
@@ -47,7 +65,6 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    // Simulate API call
     await new Promise(r => setTimeout(r, 1500));
     setStatus('success');
     setFormData({ name: '', email: '', subject: '', message: '' });
@@ -83,7 +100,7 @@ export default function Contact() {
             Let&apos;s <span className="gradient-text">Connect</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Whether you&apos;re looking for a data analyst, want to collaborate on logistics tech, or just want to chat supply chain — I&apos;d love to hear from you.
+            Whether you&apos;re looking for a supply chain specialist, want to discuss logistics tech, or explore a collaboration — I&apos;d love to hear from you.
           </motion.p>
         </motion.div>
 
@@ -93,7 +110,7 @@ export default function Contact() {
             variants={stagger}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="lg:col-span-2 space-y-4"
+            className="lg:col-span-2 space-y-3"
           >
             {contactInfo.map((item) => (
               <motion.div
@@ -103,10 +120,14 @@ export default function Contact() {
                 className={`glass rounded-xl border ${item.border} p-4 transition-all duration-300`}
               >
                 {item.href ? (
-                  <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
-                    className="flex items-center gap-4 group">
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 group"
+                  >
                     <div className={`w-10 h-10 rounded-xl ${item.bg} border ${item.border} flex items-center justify-center flex-shrink-0`}>
-                      <item.icon size={18} className={item.color} />
+                      <item.icon size={17} className={item.color} />
                     </div>
                     <div>
                       <p className="text-gray-500 text-xs font-medium">{item.label}</p>
@@ -116,7 +137,7 @@ export default function Contact() {
                 ) : (
                   <div className="flex items-center gap-4">
                     <div className={`w-10 h-10 rounded-xl ${item.bg} border ${item.border} flex items-center justify-center flex-shrink-0`}>
-                      <item.icon size={18} className={item.color} />
+                      <item.icon size={17} className={item.color} />
                     </div>
                     <div>
                       <p className="text-gray-500 text-xs font-medium">{item.label}</p>
@@ -134,11 +155,17 @@ export default function Contact() {
                 <span className="text-green-400 text-sm font-semibold">Available Now</span>
               </div>
               <p className="text-gray-500 text-xs leading-relaxed">
-                Open to data analyst roles, freelance projects, and supply chain consulting opportunities globally.
+                Open to supply chain, logistics, and operations roles in Dubai and globally. Also available for freelance consulting and automation projects.
               </p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {['UAE Resident Visa', 'Single', 'Indian National'].map((tag) => (
+                  <span key={tag} className="px-2 py-0.5 rounded-md bg-green-500/5 border border-green-500/15 text-green-500 text-xs">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </motion.div>
 
-            {/* Response time */}
             <motion.div variants={fadeUp} className="glass rounded-xl border border-white/5 p-4">
               <p className="text-gray-500 text-xs">
                 ⚡ Typical response time: <span className="text-gray-300 font-medium">within 24 hours</span>
@@ -208,7 +235,7 @@ export default function Contact() {
                       onChange={e => setFormData(p => ({ ...p, subject: e.target.value }))}
                       onFocus={() => setFocused('subject')}
                       onBlur={() => setFocused(null)}
-                      placeholder="How can I help you?"
+                      placeholder="Job opportunity, collaboration, consulting..."
                       className={inputClass('subject')}
                     />
                   </div>
@@ -222,7 +249,7 @@ export default function Contact() {
                       onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
                       onFocus={() => setFocused('message')}
                       onBlur={() => setFocused(null)}
-                      placeholder="Tell me about your project, opportunity, or question..."
+                      placeholder="Tell me about your requirements, project, or opportunity..."
                       className={`${inputClass('message')} resize-none`}
                     />
                   </div>
@@ -230,7 +257,7 @@ export default function Contact() {
                   {status === 'error' && (
                     <div className="flex items-center gap-2 text-red-400 text-sm">
                       <AlertCircle size={14} />
-                      Something went wrong. Please try again.
+                      Something went wrong. Please try again or email directly.
                     </div>
                   )}
 
@@ -248,7 +275,7 @@ export default function Contact() {
                       </>
                     ) : (
                       <>
-                        <Send size={16} />
+                        <Send size={15} />
                         Send Message
                       </>
                     )}

@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, Download, ExternalLink } from 'lucide-react';
 
 const navLinks = [
   { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#vision', label: 'Vision' },
+  { href: '#blog', label: 'Blog' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -21,9 +21,8 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-
       const sections = navLinks.map(l => l.href.replace('#', ''));
-      for (const section of sections.reverse()) {
+      for (const section of [...sections].reverse()) {
         const el = document.getElementById(section);
         if (el && window.scrollY >= el.offsetTop - 120) {
           setActiveSection(section);
@@ -37,8 +36,7 @@ export default function Navbar() {
 
   const scrollTo = (href: string) => {
     setIsOpen(false);
-    const id = href.replace('#', '');
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(href.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -62,14 +60,12 @@ export default function Navbar() {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <div className="relative w-10 h-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl opacity-80" />
-                <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm rounded-xl">
-                  SN
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl" />
+                <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm rounded-xl">SC</div>
               </div>
               <div className="hidden sm:block">
-                <p className="text-sm font-semibold text-white leading-tight">Sattanathan</p>
-                <p className="text-xs text-indigo-400 leading-tight">Supply Chain Analyst</p>
+                <p className="text-sm font-bold text-white leading-tight">Sattanathan</p>
+                <p className="text-xs text-indigo-400 leading-tight">Supply Chain Specialist</p>
               </div>
             </motion.div>
 
@@ -99,6 +95,17 @@ export default function Navbar() {
 
             {/* CTA */}
             <div className="hidden lg:flex items-center gap-3">
+              <motion.a
+                href="https://satteches.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-400 hover:text-white border border-white/10 hover:border-white/20 rounded-lg transition-all duration-300"
+              >
+                <ExternalLink size={13} />
+                satteches.com
+              </motion.a>
               <motion.a
                 href="/resume.pdf"
                 download
@@ -145,14 +152,25 @@ export default function Navbar() {
                   {link.label}
                 </motion.button>
               ))}
-              <a
-                href="/resume.pdf"
-                download
-                className="flex items-center gap-2 px-4 py-3 mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg text-white font-medium"
-              >
-                <Download size={16} />
-                Download Resume
-              </a>
+              <div className="pt-2 space-y-2">
+                <a
+                  href="https://satteches.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-3 text-gray-400 border border-white/10 rounded-lg font-medium"
+                >
+                  <ExternalLink size={15} />
+                  satteches.com
+                </a>
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg text-white font-medium"
+                >
+                  <Download size={16} />
+                  Download Resume
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
