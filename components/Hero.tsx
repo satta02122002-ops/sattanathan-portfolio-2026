@@ -200,9 +200,13 @@ export default function Hero() {
               <div className="relative z-10">
                 {/* Top row — profile */}
                 <div className="flex items-center gap-4 mb-8 pb-6 border-b border-white/5">
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
-                      SC
+                  <div className="relative flex-shrink-0">
+                    <div className="w-16 h-16 rounded-2xl overflow-hidden ring-2 ring-indigo-500/30 ring-offset-2 ring-offset-[#0a0a0f]">
+                      <img
+                        src="/profile.jpg"
+                        alt="Sattanathan Chandran"
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
                     <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-400 border-2 border-[#0a0a0f]" />
                   </div>
