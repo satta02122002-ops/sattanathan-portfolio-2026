@@ -12,4 +12,7 @@ const nextConfig: NextConfig = {
 
 export default nextConfig;
 
-import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
+// Only initialise Cloudflare Workers bindings in local dev — never during production builds
+if (process.env.NODE_ENV === 'development') {
+  import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
+}
