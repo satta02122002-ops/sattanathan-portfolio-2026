@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowDown, MapPin, Phone, Linkedin, Github, ExternalLink, ChevronRight } from 'lucide-react';
+import { ArrowDown, MapPin, Phone, Linkedin, Github, ExternalLink, ChevronRight, FileText } from 'lucide-react';
 import AnimatedCounter from './AnimatedCounter';
 
 const stats = [
@@ -171,6 +171,16 @@ export default function Hero() {
               >
                 Get in Touch
               </motion.button>
+
+              <motion.a
+                href="/cv"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2 px-6 py-3 glass border border-white/10 hover:border-purple-500/30 rounded-xl text-white font-semibold text-sm transition-all duration-300"
+              >
+                <FileText size={15} className="text-purple-400" />
+                View CV
+              </motion.a>
 
               <motion.a
                 href="https://satteches.com"
